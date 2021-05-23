@@ -1,7 +1,7 @@
 %global install_prefix /
 
 Name: fluent-bit
-Version: 1.7.5
+Version: 1.7.6
 Release: 1%{?dist}
 Summary: Fast data collector for Linux
 License: Apache v2.0
@@ -68,6 +68,9 @@ Requires: %{name} = %{version}-%{release}
 %{_includedir}/%{name}/*.h
 
 %changelog
+* Sat May 23 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.7.6-1
+- Update to 1.7.6
+
 * Sat May 15 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.7.5-1
 - Update to 1.7.5
 
