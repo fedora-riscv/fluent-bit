@@ -1,15 +1,15 @@
 %global install_prefix /
 
 Name: fluent-bit
-Version: 1.7.9
+Version: 1.8.8
 Release: 1%{?dist}
 Summary: Fast data collector for Linux
 License: Apache v2.0
 URL: https://github.com/fluent/fluent-bit
 Source0: https://github.com/fluent/%{name}/archive/refs/tags/v%{version}.tar.gz
 Patch0: 0001-mbedtls-disable-Werror-in-prod-build.patch
-Patch1: 0002-onigmo-add-fPIC-to-CFLAGS.patch
-Patch2: 0003-CMake-fix-up-install-paths.patch
+Patch1: 0002-CMake-fix-up-install-paths.patch
+Patch2: 0003-onigmo-add-fPIC-to-CFLAGS.patch
 
 BuildRequires: pkgconfig
 BuildRequires: make
@@ -66,8 +66,16 @@ Requires: %{name} = %{version}-%{release}
 %files devel
 %{_includedir}/%{name}.h
 %{_includedir}/%{name}/*.h
+%{_includedir}/%{name}/tls/*.h
+%{_includedir}/monkey/mk_core.h
+%{_includedir}/monkey/mk_core/*.h
+%{_includedir}/libco.h
+%{_includedir}/settings.h
 
 %changelog
+* Thu Oct 28 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.8-1
+- Update to 1.8.8, rebase patches
+
 * Thu Jul 8 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.7.9-1
 - Update to 1.7.9
 

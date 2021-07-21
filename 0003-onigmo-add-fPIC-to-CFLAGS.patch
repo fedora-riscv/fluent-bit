@@ -1,0 +1,22 @@
+From a7eb68faa8a81fb98436ca1ffe0bc8e7932badf2 Mon Sep 17 00:00:00 2001
+From: Benjamin Kircher <bkircher@0xadd.de>
+Date: Tue, 20 Apr 2021 18:42:03 +0200
+Subject: [PATCH 3/3] onigmo: add -fPIC to CFLAGS
+
+
+diff --git a/cmake/onigmo.cmake b/cmake/onigmo.cmake
+index efa59644..416609f3 100644
+--- a/cmake/onigmo.cmake
++++ b/cmake/onigmo.cmake
+@@ -44,7 +44,7 @@ ExternalProject_Add(onigmo
+   SOURCE_DIR ${ONIGMO_SRC}
+   INSTALL_DIR ${ONIGMO_DEST}
+   CONFIGURE_COMMAND ./configure ${AUTOCONF_HOST_OPT} --host=${HOST} --with-pic --disable-shared --enable-static --prefix=${ONIGMO_DEST}
+-  CFLAGS=-std=gnu99\ -Wall\ -pipe\ -g3\ -O3\ -funroll-loops
++  CFLAGS=-std=gnu99\ -Wall\ -pipe\ -g3\ -O3\ -funroll-loops\ -fPIC
+   BUILD_COMMAND $(MAKE) CC=${DEPS_C_COMPILER}
+   INSTALL_COMMAND $(MAKE) DESTDIR= install)
+ endif()
+-- 
+2.33.0
+
