@@ -68,13 +68,13 @@ Requires: %{name} = %{version}-%{release}
 %{_includedir}/%{name}/*.h
 
 %changelog
-* Wed Jul 8 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.7.9-1
+* Thu Jul 8 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.7.9-1
 - Update to 1.7.9
 
 * Wed Jun 9 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.7.8-1
 - Update to 1.7.8
 
-* Sat May 23 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.7.6-1
+* Sun May 23 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.7.6-1
 - Update to 1.7.6
 
 * Sat May 15 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.7.5-1
