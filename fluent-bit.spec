@@ -1,10 +1,10 @@
 %global install_prefix /
 
 Name: fluent-bit
-Version: 1.8.8
+Version: 1.8.9
 Release: 1%{?dist}
 Summary: Fast data collector for Linux
-License: Apache v2.0
+License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
 Source0: https://github.com/fluent/%{name}/archive/refs/tags/v%{version}.tar.gz
 Patch0: 0001-mbedtls-disable-Werror-in-prod-build.patch
@@ -27,6 +27,8 @@ BuildRequires: gnutls-devel
 BuildRequires: openssl-devel
 BuildRequires: cyrus-sasl-devel
 
+ExclusiveArch: x86_64 %{arm} aarch64
+
 %description
 Fluent Bit is a high performance and multi-platform log forwarder.
 
@@ -42,10 +44,18 @@ Requires: %{name} = %{version}-%{release}
 
 %build
 %cmake -DCMAKE_INSTALL_PREFIX=%{install_prefix}\
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo\
     -DFLB_EXAMPLES=Off\
     -DFLB_OUT_SLACK=Off\
+    -DFLB_IN_SYSTEMD=On\
     -DFLB_OUT_TD=Off\
     -DFLB_OUT_ES=Off\
+    -DFLB_SHARED_LIB=Off\
+    -DFLB_TESTS_RUNTIME=Off\
+    -DFLB_TESTS_INTERNAL=Off\
+    -DFLB_RELEASE=On\
+    -DFLB_DEBUG=Off\
+    -DFLB_TLS=On\
     .
 %cmake_build
 
@@ -60,7 +70,6 @@ Requires: %{name} = %{version}-%{release}
 %doc README.md MAINTAINERS.md CODE_OF_CONDUCT.md CONTRIBUTING.md GOLANG_OUTPUT_PLUGIN.md GOVERNANCE.md
 %config %{_sysconfdir}/%{name}/*.conf
 %{_bindir}/%{name}
-%{_libdir}/libfluent-bit.so
 %{_prefix}/lib/systemd/system/%{name}.service
 
 %files devel
@@ -73,6 +82,9 @@ Requires: %{name} = %{version}-%{release}
 %{_includedir}/settings.h
 
 %changelog
+* Mon Nov 1 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.9-1
+- Update to 1.8.9, remove shared library
+
 * Thu Oct 28 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.8-1
 - Update to 1.8.8, rebase patches
 
