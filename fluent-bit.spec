@@ -68,7 +68,7 @@ Requires: %{name} = %{version}-%{release}
 %files
 %license LICENSE
 %doc README.md MAINTAINERS.md CODE_OF_CONDUCT.md CONTRIBUTING.md GOLANG_OUTPUT_PLUGIN.md GOVERNANCE.md
-%config %{_sysconfdir}/%{name}/*.conf
+%config(noreplace) %{_sysconfdir}/%{name}/*.conf
 %{_bindir}/%{name}
 %{_prefix}/lib/systemd/system/%{name}.service
 
