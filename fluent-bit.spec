@@ -1,7 +1,7 @@
 %global install_prefix /
 
 Name: fluent-bit
-Version: 1.8.9
+Version: 1.8.10
 Release: 1%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
@@ -10,6 +10,7 @@ Source0: https://github.com/fluent/%{name}/archive/refs/tags/v%{version}.tar.gz
 Patch0: 0001-mbedtls-disable-Werror-in-prod-build.patch
 Patch1: 0002-CMake-fix-up-install-paths.patch
 Patch2: 0003-onigmo-add-fPIC-to-CFLAGS.patch
+Patch3: 0004-tests-runtime-in_proc-modify-absent-process-name-427.patch
 
 BuildRequires: pkgconfig
 BuildRequires: make
@@ -51,7 +52,7 @@ Requires: %{name} = %{version}-%{release}
     -DFLB_OUT_TD=Off\
     -DFLB_OUT_ES=Off\
     -DFLB_SHARED_LIB=Off\
-    -DFLB_TESTS_RUNTIME=Off\
+    -DFLB_TESTS_RUNTIME=On\
     -DFLB_TESTS_INTERNAL=Off\
     -DFLB_RELEASE=On\
     -DFLB_DEBUG=Off\
@@ -82,6 +83,9 @@ Requires: %{name} = %{version}-%{release}
 %{_includedir}/settings.h
 
 %changelog
+* Sat Nov 20 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-1
+- Update to 1.8.10, enable runtime tests
+
 * Mon Nov 1 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.9-1
 - Update to 1.8.9, remove shared library
 
