@@ -2,7 +2,7 @@
 
 Name: fluent-bit
 Version: 1.8.10
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
@@ -15,8 +15,7 @@ Patch3: 0004-tests-runtime-in_proc-modify-absent-process-name-427.patch
 BuildRequires: pkgconfig
 BuildRequires: make
 BuildRequires: cmake
-BuildRequires: systemd
-BuildRequires: systemd-devel
+BuildRequires: systemd-rpm-macros
 BuildRequires: gcc-c++
 BuildRequires: flex
 BuildRequires: bison
@@ -66,12 +65,21 @@ Requires: %{name} = %{version}-%{release}
 %check
 %ctest
 
+%post
+%systemd_post %{name}.service
+
+%preun
+%systemd_preun %{name}.service
+
+%postun
+%systemd_postun_with_restart %{name}.service
+
 %files
 %license LICENSE
 %doc README.md MAINTAINERS.md CODE_OF_CONDUCT.md CONTRIBUTING.md GOLANG_OUTPUT_PLUGIN.md GOVERNANCE.md
 %config(noreplace) %{_sysconfdir}/%{name}/*.conf
 %{_bindir}/%{name}
-%{_prefix}/lib/systemd/system/%{name}.service
+%{_unitdir}/%{name}.service
 
 %files devel
 %{_includedir}/%{name}.h
@@ -83,6 +91,9 @@ Requires: %{name} = %{version}-%{release}
 %{_includedir}/settings.h
 
 %changelog
+* Sun Nov 21 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-2
+- Add systemd scriptlet macros
+
 * Sat Nov 20 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-1
 - Update to 1.8.10, enable runtime tests
 
