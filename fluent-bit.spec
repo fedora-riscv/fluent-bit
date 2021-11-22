@@ -7,9 +7,14 @@ Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
 Source0: https://github.com/fluent/%{name}/archive/refs/tags/v%{version}.tar.gz
+# Remove -Werror in mbedtls build. Not upstream
 Patch0: 0001-mbedtls-disable-Werror-in-prod-build.patch
+# Fix up some install paths in CMake. Not upstream
 Patch1: 0002-CMake-fix-up-install-paths.patch
+# Add -fPIC to onigomo build. Not upstream
 Patch2: 0003-onigmo-add-fPIC-to-CFLAGS.patch
+# Fix up a failing runtime test
+# https://github.com/fluent/fluent-bit/issues/4274
 Patch3: 0004-tests-runtime-in_proc-modify-absent-process-name-427.patch
 
 BuildRequires: pkgconfig
@@ -91,8 +96,8 @@ Requires: %{name} = %{version}-%{release}
 %{_includedir}/settings.h
 
 %changelog
-* Sun Nov 21 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-2
-- Add systemd scriptlet macros
+* Mon Nov 22 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-2
+- Add systemd scriptlet macros, add patch status comments
 
 * Sat Nov 20 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-1
 - Update to 1.8.10, enable runtime tests
