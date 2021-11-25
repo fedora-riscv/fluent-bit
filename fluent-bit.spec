@@ -2,7 +2,7 @@
 
 Name: fluent-bit
 Version: 1.8.10
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
@@ -21,6 +21,8 @@ BuildRequires: pkgconfig
 BuildRequires: make
 BuildRequires: cmake
 BuildRequires: systemd-rpm-macros
+# systemd-devel BR is needed for systemd input plugin
+BuildRequires: systemd-devel
 BuildRequires: gcc-c++
 BuildRequires: flex
 BuildRequires: bison
@@ -36,13 +38,6 @@ ExclusiveArch: x86_64 %{arm} aarch64
 
 %description
 Fluent Bit is a high performance and multi-platform log forwarder.
-
-%package devel
-Summary: Development files for %{name}
-Requires: %{name} = %{version}-%{release}
-
-%description devel
-%{summary}
 
 %prep
 %autosetup -p1
@@ -66,6 +61,8 @@ Requires: %{name} = %{version}-%{release}
 
 %install
 %cmake_install
+# We don't ship headers and shared library for plugins (yet)
+rm -rvf %{buildroot}%{_includedir}
 
 %check
 %ctest
@@ -86,16 +83,10 @@ Requires: %{name} = %{version}-%{release}
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 
-%files devel
-%{_includedir}/%{name}.h
-%{_includedir}/%{name}/*.h
-%{_includedir}/%{name}/tls/*.h
-%{_includedir}/monkey/mk_core.h
-%{_includedir}/monkey/mk_core/*.h
-%{_includedir}/libco.h
-%{_includedir}/settings.h
-
 %changelog
+* Wed Nov 24 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-3
+- Re-add systemd-devel BR. Remove devel package
+
 * Mon Nov 22 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-2
 - Add systemd scriptlet macros, add patch status comments
 
