@@ -2,11 +2,11 @@
 
 Name: fluent-bit
 Version: 1.8.10
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
-Source0: https://github.com/fluent/%{name}/archive/refs/tags/v%{version}.tar.gz
+Source0: https://github.com/fluent/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
 # Remove -Werror in mbedtls build. Not upstream
 Patch0: 0001-mbedtls-disable-Werror-in-prod-build.patch
 # Fix up some install paths in CMake. Not upstream
@@ -84,6 +84,9 @@ rm -rvf %{buildroot}%{_includedir}
 %{_unitdir}/%{name}.service
 
 %changelog
+* Thu Nov 25 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-4
+- Fix up source URL
+
 * Wed Nov 24 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-3
 - Re-add systemd-devel BR. Remove devel package
 
