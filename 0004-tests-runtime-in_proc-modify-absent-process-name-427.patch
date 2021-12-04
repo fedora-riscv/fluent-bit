@@ -1,7 +1,8 @@
-From e7539ce34ab8fe76ac7b6e3bc4f94cf4eb030614 Mon Sep 17 00:00:00 2001
+From a93fac4397a80e933b63fcdf4f8496df5d80018f Mon Sep 17 00:00:00 2001
 From: Takahiro Yamashita <nokute78@gmail.com>
 Date: Sun, 7 Nov 2021 08:10:36 +0900
-Subject: [PATCH] tests: runtime: in_proc: modify absent process name(#4274)
+Subject: [PATCH 4/4] tests: runtime: in_proc: modify absent process
+ name(#4274)
 
 Signed-off-by: Takahiro Yamashita <nokute78@gmail.com>
 

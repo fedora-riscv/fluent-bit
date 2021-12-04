@@ -1,11 +1,12 @@
-From 0165905ad5356c0052e79b14b1f9a77cdfbaa19b Mon Sep 17 00:00:00 2001
+From a32709506fa925ad70a36869f36b9976942cef7b Mon Sep 17 00:00:00 2001
 From: Benjamin Kircher <bkircher@0xadd.de>
 Date: Wed, 21 Apr 2021 10:13:29 +0200
-Subject: [PATCH 2/3] CMake: fix up install paths
+Subject: [PATCH 2/4] CMake: fix up install paths
 
+Signed-off-by: Ben Kircher <bkircher@0xadd.de>
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 33e909b6..9c225122 100644
+index 33e909b6..039420ec 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -797,9 +797,9 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -13,10 +14,11 @@ index 33e909b6..9c225122 100644
  else()
    set(FLB_INSTALL_BINDIR ${CMAKE_INSTALL_FULL_BINDIR})
 -  set(FLB_INSTALL_LIBDIR "${CMAKE_INSTALL_LIBDIR}/${FLB_OUT_NAME}")
-+  set(FLB_INSTALL_LIBDIR "${CMAKE_INSTALL_LIBDIR}")
-   set(FLB_INSTALL_CONFDIR "${CMAKE_INSTALL_SYSCONFDIR}/${FLB_OUT_NAME}/")
+-  set(FLB_INSTALL_CONFDIR "${CMAKE_INSTALL_SYSCONFDIR}/${FLB_OUT_NAME}/")
 -  set(FLB_INSTALL_INCLUDEDIR "${CMAKE_INSTALL_PREFIX}/include")
-+  set(FLB_INSTALL_INCLUDEDIR /usr/include)
++  set(FLB_INSTALL_LIBDIR ${CMAKE_INSTALL_FULL_LIBDIR})
++  set(FLB_INSTALL_CONFDIR "${CMAKE_INSTALL_FULL_SYSCONFDIR}/${FLB_OUT_NAME}")
++  set(FLB_INSTALL_INCLUDEDIR ${CMAKE_INSTALL_FULL_INCLUDEDIR})
  endif()
  
  # Instruct CMake to build the Fluent Bit Core
@@ -34,5 +36,5 @@ index fb3ed782..79d8ac71 100644
    elseif(IS_DIRECTORY /usr/share/upstart)
      set(FLB_UPSTART_SCRIPT "${PROJECT_SOURCE_DIR}/init/${FLB_OUT_NAME}.conf")
 -- 
-2.33.0
+2.33.1
 
