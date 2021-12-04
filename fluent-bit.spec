@@ -1,8 +1,6 @@
-%global install_prefix /
-
 Name: fluent-bit
 Version: 1.8.10
-Release: 5%{?dist}
+Release: 6%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
@@ -55,8 +53,8 @@ Fluent Bit is a high performance and multi-platform log forwarder.
     -DFLB_TESTS_INTERNAL=Off\
     -DFLB_RELEASE=On\
     -DFLB_DEBUG=Off\
-    -DFLB_TLS=On\
-    .
+    -DFLB_TLS=On
+
 %cmake_build
 
 %install
@@ -84,6 +82,9 @@ rm -rvf %{buildroot}%{_includedir}
 %{_unitdir}/%{name}.service
 
 %changelog
+* Sat Dec 4 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-6
+- Do CMake out-of-source build
+
 * Sat Dec 4 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-5
 - Do not set CMAKE_INSTALL_PREFIX explicitly
 
