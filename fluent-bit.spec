@@ -1,6 +1,6 @@
 Name: fluent-bit
 Version: 1.8.10
-Release: 6%{?dist}
+Release: 7%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
@@ -31,6 +31,7 @@ BuildRequires: zlib-devel
 BuildRequires: gnutls-devel
 BuildRequires: openssl-devel
 BuildRequires: cyrus-sasl-devel
+%{?systemd_requires}
 
 ExclusiveArch: x86_64 %{arm} aarch64
 
@@ -77,11 +78,15 @@ rm -rvf %{buildroot}%{_includedir}
 %files
 %license LICENSE
 %doc README.md MAINTAINERS.md CODE_OF_CONDUCT.md CONTRIBUTING.md GOLANG_OUTPUT_PLUGIN.md GOVERNANCE.md
+%dir %{_sysconfdir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/*.conf
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 
 %changelog
+* Sat Dec 4 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-7
+- Fix missing directory ownerships
+
 * Sat Dec 4 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-6
 - Do CMake out-of-source build
 
