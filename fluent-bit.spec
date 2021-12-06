@@ -1,6 +1,6 @@
 Name: fluent-bit
 Version: 1.8.10
-Release: 7%{?dist}
+Release: 8%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
@@ -33,7 +33,9 @@ BuildRequires: openssl-devel
 BuildRequires: cyrus-sasl-devel
 %{?systemd_requires}
 
-ExclusiveArch: x86_64 %{arm} aarch64
+# Exclude armv7hl temporarily because of failing runtime tests
+# https://github.com/fluent/fluent-bit/issues/4395
+ExclusiveArch: x86_64 aarch64
 
 %description
 Fluent Bit is a high performance and multi-platform log forwarder.
@@ -84,6 +86,9 @@ rm -rvf %{buildroot}%{_includedir}
 %{_unitdir}/%{name}.service
 
 %changelog
+* Mon Dec 6 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-8
+- Temp. exclude armv7hl arch because of failing tests
+
 * Sat Dec 4 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-7
 - Fix missing directory ownerships
 
