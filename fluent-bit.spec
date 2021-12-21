@@ -1,6 +1,6 @@
 Name: fluent-bit
-Version: 1.8.10
-Release: 8%{?dist}
+Version: 1.8.11
+Release: 1%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
@@ -86,6 +86,9 @@ rm -rvf %{buildroot}%{_includedir}
 %{_unitdir}/%{name}.service
 
 %changelog
+* Tue Dec 21 2021 Ben Kircher <bkircher@0xadd.de> - 1.8.11-1
+- Update to 1.8.11
+
 * Mon Dec 6 2021 Benjamin Kircher <bkircher@0xadd.de> - 1.8.10-8
 - Temp. exclude armv7hl arch because of failing tests
 
