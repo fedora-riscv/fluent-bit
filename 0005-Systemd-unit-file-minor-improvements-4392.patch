@@ -1,0 +1,34 @@
+From 87e5735b5fbea2e9e01040d023b91276501952e3 Mon Sep 17 00:00:00 2001
+From: Ben Kircher <bkircher@0xadd.de>
+Date: Mon, 20 Dec 2021 15:57:53 +0100
+Subject: [PATCH 5/5] Systemd unit file: minor improvements (#4392)
+
+* systemd unit file: add link to documentation
+
+Signed-off-by: Ben Kircher <bkircher@0xadd.de>
+
+* systemd unit file: make -c use absolute path
+
+Signed-off-by: Ben Kircher <bkircher@0xadd.de>
+
+diff --git a/init/systemd.in b/init/systemd.in
+index 53954a22d..8e848dab9 100644
+--- a/init/systemd.in
++++ b/init/systemd.in
+@@ -1,11 +1,12 @@
+ [Unit]
+ Description=@FLB_PROG_NAME@
++Documentation=https://docs.fluentbit.io/manual/
+ Requires=network.target
+ After=network.target
+ 
+ [Service]
+ Type=simple
+-ExecStart=@CMAKE_INSTALL_FULL_BINDIR@/@FLB_OUT_NAME@ -c @CMAKE_INSTALL_SYSCONFDIR@/@FLB_OUT_NAME@/@FLB_OUT_NAME@.conf
++ExecStart=@CMAKE_INSTALL_FULL_BINDIR@/@FLB_OUT_NAME@ -c /@CMAKE_INSTALL_SYSCONFDIR@/@FLB_OUT_NAME@/@FLB_OUT_NAME@.conf
+ Restart=always
+ 
+ [Install]
+-- 
+2.34.1
+

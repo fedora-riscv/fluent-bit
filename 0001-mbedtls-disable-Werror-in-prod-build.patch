@@ -1,15 +1,15 @@
-From be5cb70ac47138b79ae7da755fa309838ee12448 Mon Sep 17 00:00:00 2001
+From be4a3a88b2a44e25dd6d1bba6f490b2ff5179dce Mon Sep 17 00:00:00 2001
 From: Benjamin Kircher <bkircher@0xadd.de>
 Date: Tue, 20 Apr 2021 12:16:41 +0200
-Subject: [PATCH 1/4] mbedtls: disable -Werror in prod build
+Subject: [PATCH 1/5] mbedtls: disable -Werror in prod build
 
 Signed-off-by: Ben Kircher <bkircher@0xadd.de>
 
-diff --git a/lib/mbedtls-2.27.0/CMakeLists.txt b/lib/mbedtls-2.27.0/CMakeLists.txt
-index 78943073..730c3b14 100644
---- a/lib/mbedtls-2.27.0/CMakeLists.txt
-+++ b/lib/mbedtls-2.27.0/CMakeLists.txt
-@@ -240,7 +240,6 @@ if(MBEDTLS_FATAL_WARNINGS)
+diff --git a/lib/mbedtls-2.28.0/CMakeLists.txt b/lib/mbedtls-2.28.0/CMakeLists.txt
+index 4e1d8aebb..872b95269 100644
+--- a/lib/mbedtls-2.28.0/CMakeLists.txt
++++ b/lib/mbedtls-2.28.0/CMakeLists.txt
+@@ -236,7 +236,6 @@ if(MBEDTLS_FATAL_WARNINGS)
      endif(CMAKE_COMPILER_IS_MSVC)
  
      if(CMAKE_COMPILER_IS_CLANG OR CMAKE_COMPILER_IS_GNU)
@@ -18,5 +18,5 @@ index 78943073..730c3b14 100644
              set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-error=cpp")
              set(CMAKE_C_FLAGS_ASAN "${CMAKE_C_FLAGS_ASAN} -Wno-error=cpp")
 -- 
-2.33.1
+2.34.1
 

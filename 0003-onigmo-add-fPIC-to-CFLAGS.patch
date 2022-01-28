@@ -1,12 +1,12 @@
-From 2f095615cc90491cae70ebdd61c0a8ef6c089052 Mon Sep 17 00:00:00 2001
+From 56e714241392db78c419829db2222b25b9c2c586 Mon Sep 17 00:00:00 2001
 From: Benjamin Kircher <bkircher@0xadd.de>
 Date: Tue, 20 Apr 2021 18:42:03 +0200
-Subject: [PATCH 3/4] onigmo: add -fPIC to CFLAGS
+Subject: [PATCH 3/5] onigmo: add -fPIC to CFLAGS
 
 Signed-off-by: Ben Kircher <bkircher@0xadd.de>
 
 diff --git a/cmake/onigmo.cmake b/cmake/onigmo.cmake
-index efa59644..416609f3 100644
+index efa596443..416609f3e 100644
 --- a/cmake/onigmo.cmake
 +++ b/cmake/onigmo.cmake
 @@ -44,7 +44,7 @@ ExternalProject_Add(onigmo
@@ -19,5 +19,5 @@ index efa59644..416609f3 100644
    INSTALL_COMMAND $(MAKE) DESTDIR= install)
  endif()
 -- 
-2.33.1
+2.34.1
 

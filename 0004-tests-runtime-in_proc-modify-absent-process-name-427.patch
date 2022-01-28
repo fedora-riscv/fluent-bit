@@ -1,13 +1,13 @@
-From a93fac4397a80e933b63fcdf4f8496df5d80018f Mon Sep 17 00:00:00 2001
+From e3be53c5e9cecfd1d5024ba44069910320411793 Mon Sep 17 00:00:00 2001
 From: Takahiro Yamashita <nokute78@gmail.com>
 Date: Sun, 7 Nov 2021 08:10:36 +0900
-Subject: [PATCH 4/4] tests: runtime: in_proc: modify absent process
+Subject: [PATCH 4/5] tests: runtime: in_proc: modify absent process
  name(#4274)
 
 Signed-off-by: Takahiro Yamashita <nokute78@gmail.com>
 
 diff --git a/tests/runtime/in_simple_systems.c b/tests/runtime/in_simple_systems.c
-index 00a0e949..3778584b 100644
+index 00a0e949b..3778584bd 100644
 --- a/tests/runtime/in_simple_systems.c
 +++ b/tests/runtime/in_simple_systems.c
 @@ -191,7 +191,7 @@ void flb_test_in_proc_absent_process(void)
@@ -20,5 +20,5 @@ index 00a0e949..3778584b 100644
  
      out_ffd = flb_output(ctx, (char *) "lib", &cb);
 -- 
-2.33.1
+2.34.1
 

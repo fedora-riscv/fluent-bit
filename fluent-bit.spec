@@ -1,6 +1,6 @@
 Name: fluent-bit
-Version: 1.8.11
-Release: 2%{?dist}
+Version: 1.8.12
+Release: 1%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
@@ -14,6 +14,9 @@ Patch2: 0003-onigmo-add-fPIC-to-CFLAGS.patch
 # Fix up a failing runtime test
 # https://github.com/fluent/fluent-bit/issues/4274
 Patch3: 0004-tests-runtime-in_proc-modify-absent-process-name-427.patch
+# Use absolute path in systemd unit file
+# https://github.com/fluent/fluent-bit/pull/4392
+Patch4: 0005-Systemd-unit-file-minor-improvements-4392.patch
 
 BuildRequires: pkgconfig
 BuildRequires: make
@@ -86,6 +89,9 @@ rm -rvf %{buildroot}%{_includedir}
 %{_unitdir}/%{name}.service
 
 %changelog
+* Fri Jan 28 2021 Ben Kircher <bkircher@0xadd.de> - 1.8.12-1
+- Update to 1.8.12, backport small patch from master
+
 * Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.11-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
