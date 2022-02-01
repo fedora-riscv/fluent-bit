@@ -89,7 +89,7 @@ rm -rvf %{buildroot}%{_includedir}
 %{_unitdir}/%{name}.service
 
 %changelog
-* Fri Jan 28 2021 Ben Kircher <bkircher@0xadd.de> - 1.8.12-1
+* Fri Jan 28 2022 Ben Kircher <bkircher@0xadd.de> - 1.8.12-2
 - Update to 1.8.12, backport small patch from master
 
 * Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.11-2
