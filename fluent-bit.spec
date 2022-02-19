@@ -1,6 +1,6 @@
 Name: fluent-bit
 Version: 1.8.12
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
@@ -17,6 +17,8 @@ Patch3: 0004-tests-runtime-in_proc-modify-absent-process-name-427.patch
 # Use absolute path in systemd unit file
 # https://github.com/fluent/fluent-bit/pull/4392
 Patch4: 0005-Systemd-unit-file-minor-improvements-4392.patch
+# Backport of Elasticsearch test fixes from master branch
+Patch5: 0006-Backport-Elasticsearch-test-fixes-from-master.patch
 
 BuildRequires: pkgconfig
 BuildRequires: make
@@ -53,7 +55,7 @@ Fluent Bit is a high performance and multi-platform log forwarder.
     -DFLB_OUT_SLACK=Off\
     -DFLB_IN_SYSTEMD=On\
     -DFLB_OUT_TD=Off\
-    -DFLB_OUT_ES=Off\
+    -DFLB_OUT_ES=On\
     -DFLB_SHARED_LIB=Off\
     -DFLB_TESTS_RUNTIME=On\
     -DFLB_TESTS_INTERNAL=Off\
@@ -89,7 +91,10 @@ rm -rvf %{buildroot}%{_includedir}
 %{_unitdir}/%{name}.service
 
 %changelog
-* Fri Jan 28 2022 Ben Kircher <bkircher@0xadd.de> - 1.8.12-2
+* Sat Feb 19 2022 Ben Kircher <bkircher@0xadd.de> - 1.8.12-2
+- Enable Elasticsearch output plugin
+
+* Fri Jan 28 2022 Ben Kircher <bkircher@0xadd.de> - 1.8.12-1
 - Update to 1.8.12, backport small patch from master
 
 * Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.11-2
