@@ -1,6 +1,6 @@
 Name: fluent-bit
-Version: 1.8.12
-Release: 2%{?dist}
+Version: 1.8.13
+Release: 1%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
@@ -91,6 +91,9 @@ rm -rvf %{buildroot}%{_includedir}
 %{_unitdir}/%{name}.service
 
 %changelog
+* Thu Mar 3 2022 Ben Kircher <bkircher@0xadd.de> - 1.8.13-1
+- Update to 1.8.13
+
 * Sat Feb 19 2022 Ben Kircher <bkircher@0xadd.de> - 1.8.12-2
 - Enable Elasticsearch output plugin
 
