@@ -1,15 +1,19 @@
-From b37288fa4d74e6264147af7ac1e220d1ad64032c Mon Sep 17 00:00:00 2001
+From ecc3aa15709c4dc5f6af51d6228fa15cf9466cb4 Mon Sep 17 00:00:00 2001
 From: Benjamin Kircher <bkircher@0xadd.de>
 Date: Wed, 21 Apr 2021 10:13:29 +0200
-Subject: [PATCH 2/5] CMake: fix up install paths
+Subject: [PATCH 2/4] CMake: fix up install paths
 
 Signed-off-by: Ben Kircher <bkircher@0xadd.de>
+---
+ CMakeLists.txt     | 6 +++---
+ src/CMakeLists.txt | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index ec42f9412..91122a0f2 100644
+index 3dba5a88a..725fc7638 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -797,9 +797,9 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+@@ -951,9 +951,9 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
    set(FLB_INSTALL_INCLUDEDIR "include")
  else()
    set(FLB_INSTALL_BINDIR ${CMAKE_INSTALL_FULL_BINDIR})
@@ -23,10 +27,10 @@ index ec42f9412..91122a0f2 100644
  
  # Instruct CMake to build the Fluent Bit Core
 diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index 523e86f80..7047120b2 100644
+index 630f875bf..131307764 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
-@@ -445,7 +445,7 @@ if(FLB_BINARY)
+@@ -484,7 +484,7 @@ if(FLB_BINARY)
        "${PROJECT_SOURCE_DIR}/init/systemd.in"
        ${FLB_SYSTEMD_SCRIPT}
        )
@@ -36,5 +40,5 @@ index 523e86f80..7047120b2 100644
    elseif(IS_DIRECTORY /usr/share/upstart)
      set(FLB_UPSTART_SCRIPT "${PROJECT_SOURCE_DIR}/init/${FLB_OUT_NAME}.conf")
 -- 
-2.34.1
+2.36.1
 

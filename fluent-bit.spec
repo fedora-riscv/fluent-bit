@@ -1,5 +1,5 @@
 Name: fluent-bit
-Version: 1.8.15
+Version: 1.9.6
 Release: 1%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
@@ -11,14 +11,8 @@ Patch0: 0001-mbedtls-disable-Werror-in-prod-build.patch
 Patch1: 0002-CMake-fix-up-install-paths.patch
 # Add -fPIC to onigomo build. Not upstream
 Patch2: 0003-onigmo-add-fPIC-to-CFLAGS.patch
-# Fix up a failing runtime test
-# https://github.com/fluent/fluent-bit/issues/4274
-Patch3: 0004-tests-runtime-in_proc-modify-absent-process-name-427.patch
-# Use absolute path in systemd unit file
-# https://github.com/fluent/fluent-bit/pull/4392
-Patch4: 0005-Systemd-unit-file-minor-improvements-4392.patch
-# Backport of Elasticsearch test fixes from master branch
-Patch5: 0006-Backport-Elasticsearch-test-fixes-from-master.patch
+# Fix Tail input plugin tests. https://github.com/fluent/fluent-bit/issues/5723
+Patch3: 0004-tests-runtime-in_tail-allow-to-append-to-local-files.patch
 
 BuildRequires: pkgconfig
 BuildRequires: make
@@ -36,6 +30,7 @@ BuildRequires: zlib-devel
 BuildRequires: gnutls-devel
 BuildRequires: openssl-devel
 BuildRequires: cyrus-sasl-devel
+BuildRequires: libyaml-devel
 %{?systemd_requires}
 
 # Exclude armv7hl temporarily because of failing runtime tests
@@ -91,6 +86,9 @@ rm -rvf %{buildroot}%{_includedir}
 %{_unitdir}/%{name}.service
 
 %changelog
+* Wed Jul 13 2022 Ben Kircher <bkircher@0xadd.de> - 1.9.6-1
+- Bump to 1.9.6, rebase/drop patches
+
 * Mon Mar 28 2022 Ben Kircher <bkircher@0xadd.de> - 1.8.15-1
 - Update to 1.8.15
 
