@@ -1,6 +1,6 @@
 Name: fluent-bit
 Version: 1.9.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
@@ -86,6 +86,9 @@ rm -rvf %{buildroot}%{_includedir}
 %{_unitdir}/%{name}.service
 
 %changelog
+* Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 1.9.6-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
+
 * Wed Jul 13 2022 Ben Kircher <bkircher@0xadd.de> - 1.9.6-1
 - Bump to 1.9.6, rebase/drop patches
 
