@@ -1,0 +1,32 @@
+commit 5754e9adf0f6999598719105e494a1696c957f7c
+Author: Leonardo Alminana <leonardo@calyptia.com>
+Date:   Mon Oct 24 11:57:21 2022 +0200
+
+    fstore: modified the log_cb prototype to match the one expected by cio
+    
+    Signed-off-by: Leonardo Alminana <leonardo@calyptia.com>
+
+diff --git a/src/flb_fstore.c b/src/flb_fstore.c
+index ea15d6f6162dfad8..40980986d75dcb5d 100644
+--- a/src/flb_fstore.c
++++ b/src/flb_fstore.c
+@@ -24,8 +24,8 @@
+ #include <fluent-bit/flb_sds.h>
+ #include <chunkio/chunkio.h>
+ 
+-static void log_cb(void *ctx, int level, const char *file, int line,
+-                   const char *str)
++static int log_cb(struct cio_ctx *ctx, int level, const char *file, int line,
++                  char *str)
+ {
+     if (level == CIO_LOG_ERROR) {
+         flb_error("[fstore] %s", str);
+@@ -39,6 +39,8 @@ static void log_cb(void *ctx, int level, const char *file, int line,
+     else if (level == CIO_LOG_DEBUG) {
+         flb_debug("[fstore] %s", str);
+     }
++
++    return 0;
+ }
+ 
+ /*
