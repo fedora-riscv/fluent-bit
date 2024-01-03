@@ -8,18 +8,10 @@ of fallocate and memmem.
 Submitted upstream: <https://github.com/fluent/fluent-bit/pull/6704>
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 1820d9b84f552168..60f4bc933c7ed39e 100644
+index 90d32da30..c6315bb2a 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -658,6 +658,7 @@ endif()
- check_c_source_compiles("
-   #include <sys/types.h>
-   #include <sys/socket.h>
-+  #include <unistd.h>
-   int main() {
-       int sock;
-       sock = socket(AF_UNIX, SOCK_STREAM, 0);
-@@ -896,8 +897,7 @@ if(NOT FLB_POSIX_TLS)
+@@ -1012,8 +1012,7 @@ if(NOT FLB_POSIX_TLS)
    check_c_source_compiles("
     __thread int a;
     int main() {
@@ -30,7 +22,7 @@ index 1820d9b84f552168..60f4bc933c7ed39e 100644
    if(FLB_HAVE_C_TLS)
      FLB_DEFINITION(FLB_HAVE_C_TLS)
 diff --git a/lib/chunkio/CMakeLists.txt b/lib/chunkio/CMakeLists.txt
-index e71c224bc92cef8e..bc1d3fe3e5e81485 100644
+index 233bce35c..9edcc2b84 100644
 --- a/lib/chunkio/CMakeLists.txt
 +++ b/lib/chunkio/CMakeLists.txt
 @@ -81,6 +81,7 @@ endif()
@@ -42,24 +34,24 @@ index e71c224bc92cef8e..bc1d3fe3e5e81485 100644
    int main() {
       fallocate(0,0,0);
 diff --git a/lib/monkey/CMakeLists.txt b/lib/monkey/CMakeLists.txt
-index 15e62e81da923f13..97c52d9d9d291ab2 100644
+index 198251d8e..bd3eb8b4d 100644
 --- a/lib/monkey/CMakeLists.txt
 +++ b/lib/monkey/CMakeLists.txt
-@@ -180,8 +180,7 @@ if(NOT MK_PTHREAD_TLS)
+@@ -181,8 +181,7 @@ if(NOT MK_PTHREAD_TLS)
    check_c_source_compiles("
       __thread int a;
       int main() {
 -         __tls_get_addr(0);
 -         return 0;
-+          return a;
++         return a;
       }" HAVE_C_TLS)
  
    if(HAVE_C_TLS)
 diff --git a/lib/monkey/mk_core/CMakeLists.txt b/lib/monkey/mk_core/CMakeLists.txt
-index 0e74f8d4587504b8..739fff3d8514f736 100644
+index 86cc7fcb4..f71d6addc 100644
 --- a/lib/monkey/mk_core/CMakeLists.txt
 +++ b/lib/monkey/mk_core/CMakeLists.txt
-@@ -62,6 +62,7 @@ set(src "${src}"
+@@ -61,6 +61,7 @@ set(src "${src}"
    )
  
  check_c_source_compiles("
@@ -67,3 +59,12 @@ index 0e74f8d4587504b8..739fff3d8514f736 100644
    #include <string.h>
    int main() {
       char  haystack[] = \"1234\";
+@@ -145,7 +146,7 @@ endif()
+ 
+ configure_file(
+   "${CMAKE_CURRENT_SOURCE_DIR}/../include/monkey/mk_core/mk_core_info.h.in"
+-  "${PROJECT_BINARY_DIR}/include/monkey/mk_core/mk_core_info.h" 
++  "${PROJECT_BINARY_DIR}/include/monkey/mk_core/mk_core_info.h"
+   )
+ 
+ add_library(mk_core STATIC ${src})

@@ -8,10 +8,10 @@ Do not attempt to return a char * from main, which returns type int.
 Submitted upstream: <https://github.com/fluent/fluent-bit/pull/6704>
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 60f4bc933c7ed39e..4a2d97778b1fdefb 100644
+index c6315bb2a..ed3c091ae 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -620,7 +620,7 @@ endif()
+@@ -738,7 +738,7 @@ endif()
  check_c_source_compiles("
    #include <time.h>
    int main() {
@@ -21,10 +21,10 @@ index 60f4bc933c7ed39e..4a2d97778b1fdefb 100644
    }" FLB_HAVE_TIMESPEC_GET)
  if(FLB_HAVE_TIMESPEC_GET)
 diff --git a/lib/cmetrics/CMakeLists.txt b/lib/cmetrics/CMakeLists.txt
-index ef01e776ee75877b..980523f793381113 100644
+index 89089c0f2..dcee1ea1b 100644
 --- a/lib/cmetrics/CMakeLists.txt
 +++ b/lib/cmetrics/CMakeLists.txt
-@@ -65,7 +65,7 @@ include_directories(
+@@ -94,7 +94,7 @@ include_directories(
  check_c_source_compiles("
    #include <time.h>
    int main() {
@@ -33,7 +33,7 @@ index ef01e776ee75877b..980523f793381113 100644
       return timespec_get(&tm, TIME_UTC);
    }" CMT_HAVE_TIMESPEC_GET)
  if(CMT_HAVE_TIMESPEC_GET)
-@@ -78,7 +78,7 @@ check_c_source_compiles("
+@@ -107,7 +107,7 @@ check_c_source_compiles("
    int main() {
       struct tm tm;
       struct timespec tms;
