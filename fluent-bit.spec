@@ -1,6 +1,6 @@
 Name: fluent-bit
 Version: 1.9.9
-Release: 4%{?dist}
+Release: 4.rv64%{?dist}
 Summary: Fast data collector for Linux
 License: ASL 2.0
 URL: https://github.com/fluent/fluent-bit
@@ -36,7 +36,7 @@ BuildRequires: libyaml-devel
 
 # Exclude armv7hl temporarily because of failing runtime tests
 # https://github.com/fluent/fluent-bit/issues/4395
-ExclusiveArch: x86_64 aarch64
+ExclusiveArch: x86_64 aarch64 riscv64
 
 %description
 Fluent Bit is a high performance and multi-platform log forwarder.
